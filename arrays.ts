@@ -107,7 +107,7 @@ console.log("shift", arr);
 // numberOfElementsToDelete - The number of element that you want to delete from an array at the startIndex
 // ele1, ele2, el3,..... - The elements that you want to add at startIndex
 
-let arr1 = [10,20,30,40,50,60, "TS"]
+let arr1 = [10,20,30,40,50,60, "TS", 30, 40]
 
 // arr1.splice(2,3, "Java", "JS") // [10,20,"Java", "JS",60, "TS"]
 // console.log("splice", arr1);
@@ -121,13 +121,87 @@ console.log("splice", arr1);
 // endIndex(Exclusive) [endIndex-1] - The position where you want to end the slice
 console.log(arr1.slice(2,6)) // [2,3,4,5]
 
-// foreach(), map(), filter(), reduce()
+// 7. indexOf(element) - Return the index of first occurance of an element from an array
+// Syntax:-
+// arrayName.indexOf(element)
+console.log(arr1.indexOf(30, 5));
+
+// 8. lastIndexOf(element) - Return the index of last occurance of an element from an array
+// Syntax:-
+// arrayName.lastIndexOf(element)
+console.log(arr1.lastIndexOf(30));
+
+
+const index = arr1.indexOf(30) // 4
+console.log(index);
+const index2 = arr1.indexOf(30, index+1)
+console.log(index2);
+
+
+// 9. concat(arra1, array2,......) - Concatenates two or more arrays
+// Syntax:-
+// arrayName.concat(arrayName1, arrayName2, arrayName3,.....)
+
+let arr2 = [1,2, "TS"]
+let arr3 = ["Python","Java"]
+const arr4 = arr2.concat(arr3)
+console.log(arr4);
+console.log(arr2);
+console.log(arr3)
+
+// 10. includes(element) - Return the result in the form of boolean
+// Syntax:-
+// arrayName.includes(element)
+console.log(arr3.includes("Python")); // true
 
 
 
 
+// foreach(fun), map(fun), filter(fun), reduce(fun)
+
+
+// function greet(fun){
+//     fun()
+// }
+
+// greet(()=>{
+//     console.log("Hello");
+// })
+
+let arr5 = [10,20,30,40,50] // [0:10,1:20,2:30,3:40,4:50]
+
+// 11. forEach(function) - Will not return anything
+// Syntax:-
+// arrayName.forEach(function(element,index,arrayName){})
+
+// element - The current element being processed in an array
+// index(optional) - The index of the current element being processed in an array
+// arrayName (optional)- The array the current element belongs to
+
+for(let i=0; i<arr5.length; i++){
+    console.log(i, arr5[i]);
+}
+
+console.log("***********************");
+arr5.forEach(function(value, index){
+     console.log(index+ value);
+})
+
+
+// 12. map(function) - Creates a new Array with the result of calling the function on every element of an array
+// It will return the value as a result similar to the number of element inside an original array
+// Syntax:-
+// arrayName.map(function(element,index,arrayName){})
+
+let price = [100,200,300,400,500,600]
+// discount = 30% // 100- 100*30/100 = 70 // 100-30%=   70/100=  0.7
+
+const mapResult = price.map(function(price){
+        return price*0.7
+})
+console.log(mapResult);
 
 
 
-
-
+// Monday - String
+// Tuesday - Playwright  - Framework - Class 
