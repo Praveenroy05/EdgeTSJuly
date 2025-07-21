@@ -202,6 +202,65 @@ const mapResult = price.map(function(price){
 console.log(mapResult);
 
 
+// 13. filter(fun) - Creates a new Array with the result of calling the function on every element of an array
+// Return the array with the same number or less then as similar to the original array
+
+// Syntax:
+// arrayName.filter(function(element,index,arrayName){})
+
+// element - The current element being processed in an array
+// index(optional) - The index of the current element being processed in an array
+// arrayName (optional)- The array the current element belongs to
+
+
+let sales = [
+    {category: 'fashion', sale : 500000},
+    {category: 'electronics', sale : 3000000},
+    {category: 'Mobile', sale : 1200000},
+    {category: 'Toys', sale : 200000},
+]
+
+let priceSales = sales.filter((price)=> price.sale < 600000)
+console.log(priceSales);
+
+// let price = {category: 'fashion', sale : 500000} 
+// console.log(price.sale);
+
+
+
+// 14.reduce(fun, initialValue(Optional)) - Reduce the result to a single value 
+// Syntax:
+// arrayName.reduce(function(accumlator, element, index, arrayName){...}, initialValue)
+
+// accumulator - The accumulated value so far in the array. The accumlated value from the previous iteration.
+// element - The current element being processed in an array
+// index(optional) - The index of the current element being processed in an array
+// arrayName (optional)- The array the current element belongs to
+
+// let arraySum = [10,20,30,40] // 10+20+30+40
+
+// let sum=0
+// for(let num of arraySum){
+//     sum = sum + num // sum = 0+10 = 10 +20 = 30 , sum = 30+30 = 60, sum = 60+40 = 100
+// }
+// console.log(sum);
+
+const totalSale = sales.reduce(function(total, price){
+    total = total + price.sale
+    return total
+}, 0)
+console.log(totalSale);
+
+ let arraySum = [10,20,30,40]
+
+const total = arraySum.reduce(function(total, price){
+    total = total * price
+    return total
+},1)
+console.log(total);
+
+
+
 
 // Monday - String
 // Tuesday - Playwright  - Framework - Class 

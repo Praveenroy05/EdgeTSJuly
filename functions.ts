@@ -91,7 +91,7 @@ arrow(arguments)
 
 */
 
-// 1. When you are trying to write a single line of code inside the function{...}, we do not even require to use return keyword
+// 1. When you are trying to write a single line of code inside the function{...}, we do not even require to use "return" keyword. Implicitly it will return the value.
 // 2. If you have a single line of code inside the function you do not even have to define the {}
 
 
