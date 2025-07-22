@@ -119,7 +119,7 @@ console.log("splice", arr1);
 // arrayName.slice(startIndex, endIndex)
 // startIndex - The position where you want to start the slice
 // endIndex(Exclusive) [endIndex-1] - The position where you want to end the slice
-console.log(arr1.slice(2,6)) // [2,3,4,5]
+console.log(arr1.slice(6,2)) // [2,3,4,5]
 
 // 7. indexOf(element) - Return the index of first occurance of an element from an array
 // Syntax:-
