@@ -54,6 +54,9 @@ test.only('get started link',   async function({ page }) {
   await console.log("Click on the get started");
   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
   await console.log("validated");
+
+
+
 });
 
 

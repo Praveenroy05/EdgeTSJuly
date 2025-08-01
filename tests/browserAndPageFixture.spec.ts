@@ -4,6 +4,7 @@ test("Understanding browser fixture", async function({browser}){
 
     const context = await browser.newContext() // Created a browser context
     const page = await context.newPage()
+    //page.getByText()
 })
 
 test("Understanding page fixture", async function({page}){
