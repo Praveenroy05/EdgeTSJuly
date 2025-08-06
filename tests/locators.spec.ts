@@ -152,7 +152,7 @@ AXES - xpath
 
 These are the recommended built-in locators.
 
-1. page.getByRole() to locate by explicit and implicit accessibility attributes.
+1. page.getByRole('radio', {name: 'Female'}) to locate by explicit and implicit accessibility attributes.
 
 2. page.getByText('Student Registration Form', {exact: true}) to locate by text content.
 

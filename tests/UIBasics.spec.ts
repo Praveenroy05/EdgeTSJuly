@@ -39,3 +39,19 @@ test("Browser", async ({browser})=>{
      const page2 = await context.newPage()
      await page2.goto("https://www.bing.com")
 })
+
+test("Handling radio button and checbox", async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/")
+    // click() - Click on an element
+    // check() - check the radio button or checkbox
+    const radioButton = page.getByRole('radio', {name:'Female'})
+    await radioButton.click()
+    // toBeChecked() - Assertion to check whether the radio button or checkbox is checked or not
+    await expect(radioButton).toBeChecked()
+
+    await page.getByRole('checkbox', {name:'Thursday'}).check()
+    await expect(page.getByRole('checkbox', {name:'Thursday'})).toBeChecked()
+    // uncheck() - Uncheck the checkbox
+    await page.getByRole('checkbox', {name:'Thursday'}).uncheck()
+    await expect(page.getByRole('checkbox', {name:'Thursday'})).not.toBeChecked()
+})
