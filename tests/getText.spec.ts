@@ -11,8 +11,16 @@ test("Get the text value of an element", async ({page})=>{
 // Automation Testing Practice")
     await expect(textValue).toContain("Automation Testing Practice")
 
-    // await expect(page.locator("#header-inner h1.title")).toHaveText("Automation Testing Practice")
+    // await expect(page.locator("#header-inner h1.title")).toHaveText("Automation Testing Practice")   
+})
 
-   
-    
+test("Get the text value of all the matching elements", async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/")
+    // allTextContents() - Get the text value from all the matching elements
+    const textValue  = await page.locator("h2.title").nth(10).allTextContents()
+    console.log("Text Value: ", textValue)  
+
+    // first() - Get the first matching element on the webpage
+    // last() - Get the last matching element on the webpage
+    // nth(index) - Get the indexed matching element on the webpage. Index starts with 0
 })
