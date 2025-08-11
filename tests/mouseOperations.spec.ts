@@ -18,3 +18,37 @@ test("double click and right click operations", async ({page})=>{
 
 })
 
+test("Mouse Over on an element", async ({page})=>{
+    await page.goto("https://www.spicejet.com/")
+    //Mouse over on an element - hover()
+    await page.getByText("SpiceClub", {exact: true}).first().hover()
+    await expect(page.getByTestId("test-id-Earn Points")).toBeVisible()
+    await expect(page.getByTestId("test-id-Earn Points")).toHaveText("Earn Points")
+})
+
+test("Scroll down on the page", async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/")
+    //await page.getByText("Download Files").first().click()
+    await page.getByText("Download Files").first().scrollIntoViewIfNeeded()
+    await page.getByText("Download Files").first().click()
+    await expect(page.url()).toContain("download-files")
+    await expect(page).toHaveURL("https://testautomationpractice.blogspot.com/p/download-files_25.html")
+})
+
+test.only("Drag and drop handling", async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/")
+
+    const sourceElement = page.locator("div#draggable")
+    const targetElement = page.locator("div#droppable")
+
+    // dragTo(Locator) - Drag the source element to the target element
+
+    await sourceElement.dragTo(targetElement)
+
+    await page.waitForTimeout(3000)
+
+})
+
+
+
+

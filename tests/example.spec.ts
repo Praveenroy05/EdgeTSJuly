@@ -47,7 +47,7 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
-test.only('get started link',   async function({ page }) {
+test('get started link',   async function({ page }) {
   await page.goto('https://playwright.dev/');
   await console.log("Launch the url");
   await page.getByRole('link', { name: 'Get started' }).click();
