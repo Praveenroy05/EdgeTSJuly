@@ -35,7 +35,7 @@ test("Scroll down on the page", async ({page})=>{
     await expect(page).toHaveURL("https://testautomationpractice.blogspot.com/p/download-files_25.html")
 })
 
-test.only("Drag and drop handling", async ({page})=>{
+test("Drag and drop handling", async ({page})=>{
     await page.goto("https://testautomationpractice.blogspot.com/")
 
     const sourceElement = page.locator("div#draggable")
@@ -45,6 +45,22 @@ test.only("Drag and drop handling", async ({page})=>{
 
     await sourceElement.dragTo(targetElement)
 
+    await page.waitForTimeout(3000)
+
+})
+
+test.only("Drag and drop custom handling", async ({page})=>{
+    await page.goto("https://testautomationpractice.blogspot.com/")
+
+    const sourceElement = page.locator("div#draggable")
+    const targetElement = page.locator("div#droppable")
+
+    await sourceElement.hover()
+    await page.mouse.down()
+    await targetElement.hover()
+    await page.mouse.up()
+    
+    await expect(page.getByText("Dropped!")).toBeVisible()
     await page.waitForTimeout(3000)
 
 })
