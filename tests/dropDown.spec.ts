@@ -43,14 +43,30 @@ import {test, expect} from '@playwright/test'
 test("Drop down developed using select tag handling", async ({page})=>{
     await page.goto("https://practice.expandtesting.com/dropdown")
     await page.locator("#country").selectOption("AM")
-  //  await page.waitForTimeout(2000)
     await page.locator("#country").selectOption({value:"BA"})
-   // await page.waitForTimeout(2000)
+    await expect(page.locator("#country")).toHaveValue('BA')
     await page.locator("#country").selectOption({label:"Dominica"})
-   // await page.waitForTimeout(2000)
+    await expect(page.locator("#country")).toHaveValue('DM')
     await page.locator("#country").selectOption({index:24})
-   // await page.waitForTimeout(2000)
+    await page.goto("https://demoqa.com/select-menu")
+    await page.locator("#cars").selectOption(["volvo", "opel"])
+    await expect(page.locator("#cars")).toHaveValues(["volvo", "opel"])
+    await page.locator("#cars").selectOption([{value:'saab'}, {label:'Audi'}, {index: 0}])
+     await expect(page.locator("#cars")).toHaveValues(["volvo","saab", "audi"])
 
-   // multiselect - 
+})
+
+test("Drop down developed using non select tag handling", async ({page})=>{
+    await page.goto("https://demoqa.com/select-menu")
+    await page.locator(".css-1hwfws3").first().click()
+    await page.locator("#react-select-2-option-2").click()
+   //await page.getByText('A root option', { exact: true }).click()
+    await page.waitForTimeout(2000)
+
+    await page.locator(".css-1hwfws3").last().click()
+    await page.locator("#react-select-4-option-0").click()
+    await page.getByText("Black", {exact: true}).last().click()
+    await page.waitForTimeout(2000)
+    
 })
 
