@@ -102,7 +102,7 @@ const arrow = (name1: string) =>{
 
 arrow("Joe")
 
-const arrow1 = (name1:string) => ("Your name is " +name1)
+const arrow1 = (name1) => ("Your name is " +name1)
 
 
 const arrow1Fun = arrow1("Rahul")
