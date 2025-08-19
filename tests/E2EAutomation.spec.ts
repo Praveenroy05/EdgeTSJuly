@@ -25,7 +25,8 @@ test("E2E automation testing", async ({page})=>{
     const products = page.locator("div.card-body")
 
     // count() - Return us the total number of element matching with the locator
-
+    // waitFor() - waiting for an element on the web page
+    await products.last().waitFor()
     const countOfProduct = await products.count() // 3 // [0,1,2]
 
     // await products.filter({hasText:`${productName}`})
@@ -35,9 +36,29 @@ test("E2E automation testing", async ({page})=>{
             await products.nth(i).locator("button").last().click()
             break
         }
+    }
+    await expect(page.locator("#toast-container")).toHaveText("Product Added To Cart")
+    await page.locator("[routerlink = '/dashboard/cart']").click()
+    await expect(page.locator("div.cartSection h3")).toHaveText(productName)
+    await page.getByRole('button', {name: 'Checkout'}).click()
 
+    await expect(page.locator(".user__name input").first()).toHaveValue(username)
+    // pressSequentially() - 
+    await page.locator(".user__name input").last().pressSequentially("in")
+
+    const ddResults = page.locator("section.ta-results button")
+    await ddResults.first().waitFor()
+    const countOfDDValues = await ddResults.count()
+    for(let i =0; i<countOfDDValues; i++){
+        const countryValue = await ddResults.nth(i).innerText() // textContent() or innerText()
+        if(countryValue.trim() === countryName){
+            await ddResults.nth(i).click()
+            break
+        }
     }
 
-    await page.waitForTimeout(3000)
-
+    await page.getByText('Place Order').click()
+    await expect(page.locator("h1.hero-primary")).toContainText("Thankyou")
+    const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent()
+    console.log(orderID);
 })
