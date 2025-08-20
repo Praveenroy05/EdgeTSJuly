@@ -20,7 +20,7 @@ test("E2E automation testing", async ({page})=>{
     await page.getByPlaceholder("enter your passsword").fill(password)
     await page.getByRole('button', {name: 'Login'}).click()
     await expect(page.locator(".fa-sign-out")).toBeVisible()
-    
+    //await page.pause()
     // get the count of total number of products
     const products = page.locator("div.card-body")
 
@@ -29,14 +29,14 @@ test("E2E automation testing", async ({page})=>{
     await products.last().waitFor()
     const countOfProduct = await products.count() // 3 // [0,1,2]
 
-    // await products.filter({hasText:`${productName}`})
-    for(let i=0; i<countOfProduct; i++){
-        const productText = await products.nth(i).locator("h5").textContent() // div.card-body h5
-        if(productText === productName){
-            await products.nth(i).locator("button").last().click()
-            break
-        }
-    }
+     await products.filter({hasText:`${productName}`}).locator("button").last().click()
+    // for(let i=0; i<countOfProduct; i++){
+    //     const productText = await products.nth(i).locator("h5").textContent() // div.card-body h5
+    //     if(productText === productName){
+    //         await products.nth(i).locator("button").last().click()
+    //         break
+    //     }
+    // }
     await expect(page.locator("#toast-container")).toHaveText("Product Added To Cart")
     await page.locator("[routerlink = '/dashboard/cart']").click()
     await expect(page.locator("div.cartSection h3")).toHaveText(productName)
@@ -61,4 +61,28 @@ test("E2E automation testing", async ({page})=>{
     await expect(page.locator("h1.hero-primary")).toContainText("Thankyou")
     const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent()
     console.log(orderID);
+
+    await page.locator("[routerlink='/dashboard/myorders']").first().click()
+    await expect(page.locator("tbody")).toBeVisible()
+
+    const rows = page.locator("tbody tr")
+    const rowCount = await rows.count()
+    let orderText
+    for(let i=0; i<rowCount; i++){
+        orderText  = await rows.nth(i).locator("th").textContent()
+        if(orderID?.includes(orderText)){
+            await expect(rows.nth(i).locator("td").nth(1)).toHaveText(productName)
+            await rows.nth(i).locator("button").first().click()
+            break
+        }
+    }
+
+    await expect(page.locator("div.col-text")).toHaveText(orderText)
+
+
+    // table tag - development of a table
+    // thead  - table header
+    // tbody - table body
+    // tr - table row
+    // td - Table definition - column
 })
