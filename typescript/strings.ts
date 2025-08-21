@@ -154,3 +154,6 @@ console.log(str7.replaceAll(",", " "));
 // Playwright  - To setup the playwright - 
 
 // 
+
+const orderID = "| 68a4a91bd2e3f0f153b7f548 |"
+console.log(orderID.replaceAll("|", "").trim());

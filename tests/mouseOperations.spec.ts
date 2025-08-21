@@ -49,7 +49,7 @@ test("Drag and drop handling", async ({page})=>{
 
 })
 
-test.only("Drag and drop custom handling", async ({page})=>{
+test("Drag and drop custom handling", async ({page})=>{
     await page.goto("https://testautomationpractice.blogspot.com/")
 
     const sourceElement = page.locator("div#draggable")

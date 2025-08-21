@@ -9,7 +9,7 @@
 
 let username = "testnHNk@gmail.com"
 let password = "Testing@1234"
-let productName = "IPHONE 13 PRO"
+let productName = "ADIDAS ORIGINAL"
 let countryName = "Singapore"
 
 import {test, expect} from '@playwright/test'
@@ -28,15 +28,14 @@ test("E2E automation testing", async ({page})=>{
     // waitFor() - waiting for an element on the web page
     await products.last().waitFor()
     const countOfProduct = await products.count() // 3 // [0,1,2]
-
-     await products.filter({hasText:`${productName}`}).locator("button").last().click()
-    // for(let i=0; i<countOfProduct; i++){
-    //     const productText = await products.nth(i).locator("h5").textContent() // div.card-body h5
-    //     if(productText === productName){
-    //         await products.nth(i).locator("button").last().click()
-    //         break
-    //     }
-    // }
+    
+    for(let i=0; i<countOfProduct; i++){
+        const productText = await products.nth(i).locator("h5").textContent() // div.card-body h5
+        if(productText === productName){
+            await products.nth(i).locator("button").last().click()
+            break
+        }
+    }
     await expect(page.locator("#toast-container")).toHaveText("Product Added To Cart")
     await page.locator("[routerlink = '/dashboard/cart']").click()
     await expect(page.locator("div.cartSection h3")).toHaveText(productName)
@@ -59,7 +58,7 @@ test("E2E automation testing", async ({page})=>{
 
     await page.getByText('Place Order').click()
     await expect(page.locator("h1.hero-primary")).toContainText("Thankyou")
-    const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent()
+    const orderID = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
     console.log(orderID);
 
     await page.locator("[routerlink='/dashboard/myorders']").first().click()
@@ -77,7 +76,64 @@ test("E2E automation testing", async ({page})=>{
         }
     }
 
-    await expect(page.locator("div.col-text")).toHaveText(orderText)
+    await expect(page.locator("div.col-text")).toHaveText(orderText!)
+
+
+    // table tag - development of a table
+    // thead  - table header
+    // tbody - table body
+    // tr - table row
+    // td - Table definition - column
+})
+
+test("E2E automation testing filter on Locator", async ({page})=>{
+    await page.goto("https://rahulshettyacademy.com/client")
+    await page.getByPlaceholder("email@example.com").fill(username)
+    await page.getByPlaceholder("enter your passsword").fill(password)
+    await page.getByRole('button', {name: 'Login'}).click()
+    await expect(page.locator(".fa-sign-out")).toBeVisible()
+    //await page.pause()
+    // get the count of total number of products
+    const products = page.locator("div.card-body")
+
+    // count() - Return us the total number of element matching with the locator
+    // waitFor() - waiting for an element on the web page
+    await products.last().waitFor()    
+    await products.filter({hasText:`${productName}`}).locator("button").last().click()
+
+    await expect(page.locator("#toast-container")).toHaveText("Product Added To Cart")
+    await page.locator("[routerlink = '/dashboard/cart']").click()
+    await expect(page.locator("div.cartSection h3")).toHaveText(productName)
+    await page.getByRole('button', {name: 'Checkout'}).click()
+
+    await expect(page.locator(".user__name input").first()).toHaveValue(username)
+    // pressSequentially() - 
+    await page.locator(".user__name input").last().pressSequentially("in")
+
+    const ddResults = page.locator("section.ta-results button")
+    await ddResults.first().waitFor()
+    const countOfDDValues = await ddResults.count()
+    for(let i =0; i<countOfDDValues; i++){
+        const countryValue = await ddResults.nth(i).innerText() // textContent() or innerText()
+        if(countryValue.trim() === countryName){
+            await ddResults.nth(i).click()
+            break
+        }
+    }
+
+    await page.getByText('Place Order').click()
+    await expect(page.locator("h1.hero-primary")).toContainText("Thankyou")
+    const order = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
+    const orderID = order?.replaceAll("|", "").trim()
+    console.log(orderID);
+
+    await page.locator("[routerlink='/dashboard/myorders']").first().click()
+    await expect(page.locator("tbody")).toBeVisible()
+
+    const rows = page.locator("tbody tr")
+    await rows.filter({hasText: `${orderID}`}).locator("button").first().click()
+
+    await expect(page.locator("div.col-text")).toHaveText(orderID!)
 
 
     // table tag - development of a table
