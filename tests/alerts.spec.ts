@@ -16,6 +16,8 @@
 
 import {test, expect} from '@playwright/test'
 
+    
+
 test("Alert Handling", async ({page})=>{
     await page.goto("https://testautomationpractice.blogspot.com/")
 
@@ -47,7 +49,7 @@ test("Confirm Alert Handling", async ({page})=>{
         dialog.dismiss()
     })
 
-    await page.locator("#confirmBtn").click()
+    await page.locator("#confirmBtn").click({timeout: 60000})
     await expect(page.locator("#demo")).toHaveText("You pressed Cancel!")
 
 })

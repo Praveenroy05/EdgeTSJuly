@@ -22,7 +22,9 @@ test('test1', async ({ page }) => {
   await page.locator('#checkBoxOption1').check();
 
   await page.locator('iframe[name="iframe-name"]').contentFrame().getByRole('link', { name: 'NEW All Access plan' }).click();
+
   await expect(page.locator('iframe[name="iframe-name"]').contentFrame().locator('h1')).toContainText('All Access Subscription');
+  
   await expect(page.locator('iframe[name="iframe-name"]').contentFrame().locator('h1')).toContainText('All Access Subscription');
 
   
