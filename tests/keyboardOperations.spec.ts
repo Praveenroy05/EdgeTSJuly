@@ -34,7 +34,9 @@ test("Keyboard Operations", async ({page})=>{
     await page.keyboard.press('Tab')
     await page.keyboard.press('Enter')
     await expect(page.locator("#name")).toBeVisible()
+})
 
+test("Shift keyword", async ({page})=>{
     await page.goto("https://practicetestautomation.com/practice-test-login/")
     // await page.keyboard.press('PageDown')
     // await page.waitForTimeout(2000)
@@ -42,15 +44,9 @@ test("Keyboard Operations", async ({page})=>{
     // await page.waitForTimeout(2000)
 
     await page.locator("#username").click()
-    await page.keyboard.down("Shift")
-    await page.keyboard.down("t");
-    await page.keyboard.up("t");
-    await page.keyboard.up("Shift")
-    await page.waitForTimeout(2000)
-
-
-
-
+    await page.keyboard.down("Shift");
+    await page.keyboard.press("KeyT");
+    await page.keyboard.up("Shift");
 })
 
 
