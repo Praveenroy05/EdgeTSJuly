@@ -38,15 +38,17 @@ test("Keyboard Operations", async ({page})=>{
 
 test("Shift keyword", async ({page})=>{
     await page.goto("https://practicetestautomation.com/practice-test-login/")
-    // await page.keyboard.press('PageDown')
-    // await page.waitForTimeout(2000)
-    // await page.keyboard.press('PageUp')
-    // await page.waitForTimeout(2000)
+    await page.keyboard.press('PageDown')
+    await page.waitForTimeout(2000)
+    await page.keyboard.press('PageUp')
+    await page.waitForTimeout(2000)
 
     await page.locator("#username").click()
     await page.keyboard.down("Shift");
     await page.keyboard.press("KeyT");
     await page.keyboard.up("Shift");
+    await page.waitForTimeout(2000)
+
 })
 
 
