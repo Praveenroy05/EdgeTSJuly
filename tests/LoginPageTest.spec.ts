@@ -1,21 +1,27 @@
 import {test, expect} from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
+import { DashboardPage } from '../pages/DashboardPage'
 
 let url = "https://rahulshettyacademy.com/client"
 let username = "testnHNk@gmail.com"
 let password = "Testing@1234"
 let incorrectPassword = "Test"
 
-test("Valid Login Test", async ({page})=>{
-    const loginPage = new LoginPage(page)
+
+let loginPage 
+let dashboardPage
+test.beforeEach(async ({page})=>{
+    loginPage = new LoginPage(page)
+    dashboardPage = new DashboardPage(page)
     await loginPage.launchURL(url)
-    await loginPage.validLogin(username, password)
-    await expect(loginPage.homePageIdentifier).toBeVisible()
 })
 
-test("Invalid Login Test", async ({page})=>{
-    const loginPage = new LoginPage(page)
-    await loginPage.launchURL(url)
+test("Valid Login Test", async ()=>{
+    await loginPage.validLogin(username, password)
+    await expect(dashboardPage.homePageIdentifier).toBeVisible()
+})
+
+test("Invalid Login Test", async ()=>{
     await loginPage.invalidLogin(username, incorrectPassword)
     await expect(loginPage.errorMessage).toContainText("Incorrect email or password.")
 })
