@@ -10,7 +10,7 @@ let cartSuccessMsg = "Product Added To Cart"
 
 
 let loginPage 
-let dashboardPage
+let dashboardPage :DashboardPage
 test.beforeEach(async ({page})=>{
     loginPage = new LoginPage(page)
     dashboardPage = new DashboardPage(page)

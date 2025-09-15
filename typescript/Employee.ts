@@ -58,6 +58,7 @@ obj1.key1
 
 */
 
+import loginData from '../TestData/login.json'
 class Employee{
 
     empId : number
@@ -99,6 +100,54 @@ console.log(emp2.empId)
 console.log(Employee.company);
 emp2.employeeInformation()
 Employee.displayCompanyName()
+
+
+
+console.log(emp2);
+
+
+
+const Human = 
+{
+    name : "Rahul",
+    age : 32,
+    isEmployed : true,
+    address : {
+        city: "Indore",
+        state : "MP",
+        country : "India"
+    },
+    skills : ["Java", "Python", "JS"],
+    skill: [
+        {one: "TS"}, 
+        {two: "Go"}
+    ],
+    isMarried : true
+}
+
+// 
+
+console.log(Human.name);
+console.log(Human.isEmployed);
+console.log(Human.address);
+
+console.log(Human.address.state)
+
+console.log(Human.skills[1])
+
+console.log(Human.skill[1].two)
+
+
+
+// Json
+
+console.log(loginData.url);
+console.log(loginData.username);
+
+
+let i =[ 10,20,30,40]
+
+
 
 
 

@@ -8,8 +8,8 @@ let password = "Testing@1234"
 let incorrectPassword = "Test"
 
 
-let loginPage 
-let dashboardPage
+let loginPage :LoginPage
+let dashboardPage :DashboardPage
 test.beforeEach(async ({page})=>{
     loginPage = new LoginPage(page)
     dashboardPage = new DashboardPage(page)

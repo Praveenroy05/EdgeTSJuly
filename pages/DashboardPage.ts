@@ -1,4 +1,4 @@
-import { expect } from "playwright/test"
+import { expect, Page } from "playwright/test"
 export class DashboardPage{
    
     private page
@@ -6,13 +6,13 @@ export class DashboardPage{
     homePageIdentifier
     addToCartSuccessMsg
     private searchTextBox
-    private viewProductName
-    private viewProductPrice
-    productPrice
+     viewProductName
+     viewProductPrice
+    productPrice: string
 
 
 
-    constructor(page){
+    constructor(page : Page){
         this.page = page
         this.products = this.page.locator("div.card-body")
         this.homePageIdentifier = this.page.locator(".fa-sign-out")
@@ -20,11 +20,11 @@ export class DashboardPage{
         this.searchTextBox = this.page.getByPlaceholder("search")
         this.viewProductName = this.page.locator("div.rtl-text h2")
         this.viewProductPrice = this.page.locator("div.rtl-text h3")
-        //this.productPrice = ""
+        this.productPrice = ""
     }
 
 
-    async searchAndAddProductToCart(productName){
+    async searchAndAddProductToCart(productName: string){
         await this.products.last().waitFor()
         const countOfProduct = await this.products.count()
         
@@ -36,7 +36,7 @@ export class DashboardPage{
             }
         }
     }
-    async searchAndValidateProductDetails(productName){
+    async searchAndValidateProductDetails(productName: string){
         await this.products.last().waitFor()
         const countOfProduct = await this.products.count()
         for(let i=0; i<countOfProduct; i++){
