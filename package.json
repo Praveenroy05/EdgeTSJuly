@@ -2,8 +2,7 @@
   "name": "qedgetsjune",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Praveenroy05/EdgeTSJuly.git"
@@ -18,6 +17,7 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.54.1",
-    "@types/node": "^24.1.0"
+    "@types/node": "^24.1.0",
+    "xlsx": "^0.18.5"
   }
 }
