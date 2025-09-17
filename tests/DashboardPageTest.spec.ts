@@ -19,12 +19,12 @@ test.beforeEach(async ({page})=>{
     await expect(dashboardPage.homePageIdentifier).toBeVisible() 
 })
 
-test("Add the product to the cart", async ()=>{
+test("@smoke @regression Add the product to the cart", async ()=>{
     await dashboardPage.searchAndAddProductToCart(productName)
     await expect(dashboardPage.addToCartSuccessMsg).toHaveText(cartSuccessMsg)
 })
 
-test("Validate the product details", async ()=>{
+test("@smoke Validate the product details", async ()=>{
     await dashboardPage.searchAndValidateProductDetails(productName)
     await expect(dashboardPage.viewProductName).toHaveText(productName)
     await expect(dashboardPage.viewProductPrice).toHaveText(dashboardPage.productPrice)
