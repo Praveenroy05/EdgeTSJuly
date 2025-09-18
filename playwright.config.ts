@@ -20,7 +20,8 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 10 : 5, // 8 test cases  
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { outputFolder: 'test-reports/playwright-report' }],
+              ['line'], ["allure-playwright"], ['monocart-reporter']],
   timeout : 60000,
   expect:{
     timeout : 5000
@@ -34,7 +35,7 @@ export default defineConfig({
     trace: 'on',
     screenshot : 'on',
     video: 'on',
-    headless : false
+    headless : true
   },
 
   /* Configure projects for major browsers */

@@ -7,7 +7,7 @@ let username = "testnHNk@gmail.com"
 let password = "Testing@1234"
 let incorrectPassword = "Test"
 
-//test.describe.configure({mode : 'parallel', timeout : 120000, retries : 1})
+test.describe.configure({mode : 'parallel', timeout : 120000, retries : 1})
 
 let loginPage :LoginPage
 let dashboardPage :DashboardPage

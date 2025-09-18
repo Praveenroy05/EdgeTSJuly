@@ -14,7 +14,7 @@ for(let data of productData){
         
     })
 
-    test(`Add the product to the cart for ${data.productName}`, async ()=>{
+    test(`Add the product to the cart for ${data.productName}`,{tag: ['@smoke', '@regression']}, async ()=>{
         await loginPage.launchURL(data.url)
         await loginPage.validLogin(data.username, data.password)
         await expect(dashboardPage.homePageIdentifier).toBeVisible()
@@ -22,7 +22,7 @@ for(let data of productData){
         await expect(dashboardPage.addToCartSuccessMsg).toHaveText(data.cartSuccessMsg)
     })
 
-    test(`Validate the product details for ${data.productName}`, async ()=>{
+    test(`Validate the product details for ${data.productName}`,{tag: '@smoke'}, async ()=>{
         await loginPage.launchURL(data.url)
         await loginPage.validLogin(data.username, data.password)
         await expect(dashboardPage.homePageIdentifier).toBeVisible()
