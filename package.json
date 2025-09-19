@@ -6,8 +6,11 @@
     "fullTest": "npx playwright test",
     "test:smoke": "npx playwright test --grep @smoke",
     "test:regression": "npx playwright test --grep @regression",
-    "test:qa": "npx playwright test --grep (?=.*@smoke)(?=.*@regression)",
-    "allure-report": "allure serve allure-results"
+    "test:smokeAndRegession": "npx playwright test --grep (?=.*@smoke)(?=.*@regression)",
+    "allure-report": "allure serve allure-results",
+    "test:qa" : "set ENV=qa&& npx playwright test --grep @smoke",
+    "test:stg" : "set ENV=stg&& npx playwright test --grep @smoke",
+    "test:prod" : "set ENV=prod&& npx playwright test --grep @smoke"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     "@types/node": "^24.1.0",
     "allure-commandline": "^2.34.1",
     "allure-playwright": "^3.4.1",
+    "dotenv": "^17.2.2",
     "monocart-reporter": "^2.9.22",
     "xlsx": "^0.18.5"
   }

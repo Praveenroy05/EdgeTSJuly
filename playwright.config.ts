@@ -1,10 +1,24 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv'
+import path from 'path';
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 // require('dotenv').config();
+
+const ENV_NAME = process.env.ENV || 'qa'
+// console.log(ENV_NAME);
+
+dotenv.config({
+  path : path.join(__dirname, "TestData", `data.env.${ENV_NAME}`)
+})
+
+// console.log(process.env);
+// console.log(process.env.EMAIL);
+// console.log(process.env.PASSWORD);
+
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -35,7 +49,7 @@ export default defineConfig({
     trace: 'on',
     screenshot : 'on',
     video: 'on',
-    headless : true
+    headless : false
   },
 
   /* Configure projects for major browsers */

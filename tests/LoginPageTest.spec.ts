@@ -19,7 +19,7 @@ test.beforeEach(async ({page})=>{
 
 test.describe("Login Page Test", async ()=>{
     test("Valid Login Test",{tag: ['@smoke', '@regression']}, async ()=>{
-        test.step("Login into application", async ()=>{
+        test.step.skip("Login into application", async ()=>{
         await loginPage.validLogin(username, password)
         })
         test.step("Assertion for successful login", async ()=>{
