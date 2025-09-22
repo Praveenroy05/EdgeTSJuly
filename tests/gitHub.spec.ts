@@ -15,3 +15,9 @@
 // 10. Pull all the latest changes inside your local system - git pull
 
 
+// If you are the first  person who is developeing the framework from scratch
+// 1. Write the test cases inside your framework
+// 2. Initialse the git inside your local system - git init
+// 3. Add all the changes to you local git - git add .
+
+
