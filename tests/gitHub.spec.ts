@@ -1,0 +1,17 @@
+// GitHub, Bitbucket , Gitlab - Version control tool
+
+// 1. Clone the repository inside your local system - git clone <repository URL> - only one time work
+// 2. Install all the dependencies for the repository - npm install , npm playwright install - only one time work
+
+// 3. Create a new branch to work on dashboardPage - git checkout -b branchName
+// 4. Develope the test cases and make the changes
+// 5. Add all the changes to you local git - git add . - git add filename
+// 6. Commit the changes in your local git - git commit -m "DP test cases"
+// 7. Push all the changes to the remote repository - git push -u origin branchName. Ex: - git push -u origin dashboardPage
+// 8. Raise a Pull Request
+
+// From next feature onwards:
+// 9. Move to the main branch - git checkout branchName - git checkout master
+// 10. Pull all the latest changes inside your local system - git pull
+
+
