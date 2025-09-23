@@ -16,3 +16,6 @@
 // 2. Create .env files are store it inside the TestData folder (data.env.qa)
 // 3. Inside the playwright.config.ts, we have a method inside dotenv.config({path : ".env file path"})
 // 4. 
+
+
+// CICD - 
